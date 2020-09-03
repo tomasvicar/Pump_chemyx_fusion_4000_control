@@ -157,6 +157,20 @@ classdef Pump
             end 
        end 
        
+       
+       function pause(obj)
+          tmp=[num2str(obj.pumpNumber) ' pause'];
+            tmp=[tmp ' '];
+            disp(tmp);
+            fprintf(obj.s, tmp);
+            out = fscanf(obj.s);
+            while ~isempty(out)
+                disp(out)
+                out = fscanf(obj.s);
+            end 
+       end 
+       
+       
        function close(obj)
           fclose(obj.s);
           delete(obj.s);

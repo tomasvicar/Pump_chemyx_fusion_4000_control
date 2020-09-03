@@ -8,7 +8,7 @@ diameter=27;
 
 pump=Pump(COMPort,baudRate,pump_num,diameter);
 
-pump.set_units('mL/min')
+pump.set_units('uL/min')
 
 
 
@@ -28,11 +28,17 @@ pump.set_units('mL/min')
 % pump.stop()
 
 
+shear_stres=64*[1,1,1,1,1];
+
+% shear_stres=32*[1,-1,1,-1,1,-1];
+
+rate_values=shear_stres*(12.98);
+
 replicas=1;
-step_time=20;
-delay_time=10;
-% rate_values=[0.5,1,2,4,8];
-rate_values=[8,12,16,20,24];
+step_time=40;
+delay_time=40;
+% % rate_values=[0.5,1,2,4,8];
+% rate_values=[8,12,16,20,24];
 
 rates=[];
 for k=1:length(rate_values)
@@ -42,9 +48,9 @@ times=repmat(step_time,[1,length(rates)]);
 delays=repmat(delay_time,[1,length(rates)]);
 
 
-rates=[2 rates];
-times=[20 times];
-delays=[0,delays];
+% rates=[2 rates];
+% times=[20 times];
+% delays=[0,delays];
 
 
 volumes=times.*rates/60;
