@@ -133,8 +133,8 @@ classdef Pump
        
   
        
-       function start(obj,mode)
-          tmp=[num2str(obj.pumpNumber) ' start ' num2str(mode)];
+       function start(obj)
+          tmp=[num2str(obj.pumpNumber) ' start ' num2str(1)];
             tmp=[tmp ' '];
             disp(tmp);
             fprintf(obj.s, tmp);
@@ -144,21 +144,21 @@ classdef Pump
                 out = fscanf(obj.s);
             end 
        end 
+       
+%        function stop(obj)
+%           tmp=[num2str(obj.pumpNumber) 'stop'];
+%             tmp=[tmp ' '];
+%             disp(tmp);
+%             fprintf(obj.s, tmp);
+%             out = fscanf(obj.s);
+%             while ~isempty(out)
+%                 disp(out)
+%                 out = fscanf(obj.s);
+%             end 
+%        end 
+       
        
        function stop(obj)
-          tmp=[num2str(obj.pumpNumber) ' stop'];
-            tmp=[tmp ' '];
-            disp(tmp);
-            fprintf(obj.s, tmp);
-            out = fscanf(obj.s);
-            while ~isempty(out)
-                disp(out)
-                out = fscanf(obj.s);
-            end 
-       end 
-       
-       
-       function pause(obj)
           tmp=[num2str(obj.pumpNumber) ' pause'];
             tmp=[tmp ' '];
             disp(tmp);
@@ -170,6 +170,35 @@ classdef Pump
             end 
        end 
        
+       
+       function help(obj)
+          tmp=['help'];
+            tmp=[tmp ' '];
+            disp(tmp);
+            fprintf(obj.s, tmp);
+            out = fscanf(obj.s);
+            while ~isempty(out)
+                disp(out)
+                out = fscanf(obj.s);
+            end 
+       end 
+       
+       function [limits]=limits(obj)
+          tmp=[num2str(obj.pumpNumber) ' read limit parameter'];
+            tmp=[tmp ' '];
+            disp(tmp);
+            fprintf(obj.s, tmp);
+            out = fscanf(obj.s);
+            k=0;
+            while ~isempty(out)
+                k=k+1;
+                if k ==2
+                    limits=out;
+                end
+                disp(out)
+                out = fscanf(obj.s);
+            end 
+       end 
        
        function close(obj)
           fclose(obj.s);
