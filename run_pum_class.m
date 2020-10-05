@@ -1,9 +1,9 @@
 clc;clear all;close all;
 
-COMPort = 'COM3';
+COMPort = 'COM4';
 baudRate = 115200;
 pump_num=1;
-diameter=27;
+diameter=17;
 
 
 pump=Pump(COMPort,baudRate,pump_num,diameter);
@@ -28,29 +28,17 @@ pump.set_units('uL/min')
 % pump.stop()
 
 
-shear_stres=64*[1,1,1,1,1];
 
-% shear_stres=32*[1,-1,1,-1,1,-1];
+% rates=[1,2,4,8,16,32,64,128]*12.98;
+rates=[32,64,128]*12.98;
+step_time=60;
+delay_time=0;
 
-rate_values=shear_stres*(12.98);
 
-replicas=1;
-step_time=40;
-delay_time=40;
-% % rate_values=[0.5,1,2,4,8];
-% rate_values=[8,12,16,20,24];
-
-rates=[];
-for k=1:length(rate_values)
-    rates=[rates,repmat(rate_values(k),[1,replicas])];
-end
 times=repmat(step_time,[1,length(rates)]);
 delays=repmat(delay_time,[1,length(rates)]);
 
 
-% rates=[2 rates];
-% times=[20 times];
-% delays=[0,delays];
 
 
 volumes=times.*rates/60;
@@ -63,9 +51,9 @@ pump.set_rate(rates)
 pump.set_delay(delays)
 
 
-
+% pump.stop()
 % pump.start()
 % pump.close()
-pump.help()
+% pump.help()
 
 % pump.limits()
