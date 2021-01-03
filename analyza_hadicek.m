@@ -1,9 +1,9 @@
 clc;clear all;close all;
 
-addpath('C:\Users\tomas\Desktop\test_hadicek')
+% addpath('C:\Users\tomas\Desktop\test_hadicek')
 
 
-table=readtable('5_spravnyprumer.csv');
+table=readtable('xxx02.csv');
 
 y=table.FlowLinearized_ml_min_;
 x=table.RelativeTime_s_;
@@ -49,6 +49,8 @@ for k=1:length(rate)
 end
 
 plot(time,values)
+
+
 
 
 

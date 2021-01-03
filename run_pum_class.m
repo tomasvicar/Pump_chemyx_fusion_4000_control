@@ -1,10 +1,10 @@
-clc;clear all;close all;
+clc;clear all force;close all;
 
-COMPort = 'COM4';
+COMPort = 'COM5';
 baudRate = 115200;
 pump_num=1;
-diameter=17;
-
+% diameter=20;
+diameter=20;
 
 pump=Pump(COMPort,baudRate,pump_num,diameter);
 
@@ -26,19 +26,41 @@ pump.set_units('uL/min')
 % pump.start(1)
 % 
 % pump.stop()
+% k=0.5;
+% rates=[linspace(10^k,400^k,10).^(1/k)]*12.98;
 
+% rates=[100,100,100,200,200,200]*12.98;
+% rates=[50,50,50,100,100,100]*12.98;
+rates=linspace(30,300,8)*12.98;
+% rates=[50,50,50,50,100,100,100,100]*12.98;
+% rates=[50,100]*12.98;
+% rates=[100,200]*12.98;
+% rates = repmat(rates,[1,4]);
+% rates=[100,100,100,100,200,200,200,200]*12.98;
+% rates = linspace(5,50,10)*12.98;
+% rates = (50:50:400)*12.98;
 
+% rates = repmat(rates,[1,3]);
 
-% rates=[1,2,4,8,16,32,64,128]*12.98;
-rates=[32,64,128]*12.98;
-step_time=60;
-delay_time=0;
+% rates=[100,100]*12.98;
 
+step_time=20;
+delay_time=20;
 
-times=repmat(step_time,[1,length(rates)]);
+% step_time=600;
+% delay_time=0;
+
 delays=repmat(delay_time,[1,length(rates)]);
+times=repmat(step_time,[1,length(rates)]);
 
 
+rates = [5*12.98,rates];
+delays = [5,delays];
+times = [60,times];
+
+% rates=[50,50]*12.98;
+% delays =[0,0];
+% times=[120,120];
 
 
 volumes=times.*rates/60;
