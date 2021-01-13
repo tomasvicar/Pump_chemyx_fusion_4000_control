@@ -1,0 +1,3 @@
+ - na výřezku jen aktuální zhluk
+ - ukládat čas píku - kvůli treatmentu
+ -
