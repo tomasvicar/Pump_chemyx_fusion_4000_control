@@ -1,10 +1,10 @@
 clc;clear all force;close all;
 
-COMPort = 'COM5';
+COMPort = 'COM3';
 baudRate = 115200;
-pump_num=1;
+pump_num=2;
 % diameter=20;
-diameter=20;
+diameter=19;
 
 pump=Pump(COMPort,baudRate,pump_num,diameter);
 
@@ -31,7 +31,15 @@ pump.set_units('uL/min')
 
 % rates=[100,100,100,200,200,200]*12.98;
 % rates=[50,50,50,100,100,100]*12.98;
-rates=linspace(30,300,8)*12.98;
+% rates=[50,50,50,100,100,100,150,150,150]*12.98;
+
+% rates=[50,50,50,100,100,100,150,150,150]*12.98;
+
+% rates=(30:15:135)*12.98;
+
+% rates=(30:15:120)*12.98;
+
+% rates=linspace(30,300,8)*12.98;
 % rates=[50,50,50,50,100,100,100,100]*12.98;
 % rates=[50,100]*12.98;
 % rates=[100,200]*12.98;
@@ -44,8 +52,15 @@ rates=linspace(30,300,8)*12.98;
 
 % rates=[100,100]*12.98;
 
-step_time=20;
-delay_time=20;
+
+rates=[50,50,50]*12.98;
+
+step_time=30;
+delay_time=30;
+
+% step_time=20;
+% delay_time=20;
+
 
 % step_time=600;
 % delay_time=0;
@@ -53,10 +68,16 @@ delay_time=20;
 delays=repmat(delay_time,[1,length(rates)]);
 times=repmat(step_time,[1,length(rates)]);
 
+rates = [10*12.98,rates,10*12.98];
+delays = [0,delays,delay_time];
+times = [30,times,30];
 
-rates = [5*12.98,rates];
-delays = [5,delays];
-times = [60,times];
+
+% for soft syringe
+% rates = [10*12.98,rates,5*12.98];
+% delays = [0,delays,30];
+% times = [30,times,30];
+
 
 % rates=[50,50]*12.98;
 % delays =[0,0];

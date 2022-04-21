@@ -38,7 +38,7 @@ delays=repmat(delay_time,[1,length(rates)]);
 
 % rates=[128,128,128]*12.98;
 
-rates=[30]*12.98;
+rates=[10]*12.98;
 % rates=[5:5:50]*12.98;
 % rates=[10:10:100]*12.98;
 % rates=[20:20:400]*12.98;
@@ -56,7 +56,7 @@ rates=[30]*12.98;
 % delay_time=60;
 
 delay_time=0;
-step_time=120;
+step_time=180;
 
 times=repmat(step_time,[1,length(rates)]);
 

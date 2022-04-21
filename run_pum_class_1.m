@@ -1,8 +1,8 @@
 clc;clear all force;close all;
 
-COMPort = 'COM3';
+COMPort = 'COM6';
 baudRate = 115200;
-pump_num=2;
+pump_num=1;
 % diameter=20;
 % diameter=20;
 diameter=19;
@@ -34,7 +34,7 @@ pump.set_units('uL/min')
 
 % rates = repmat(rates,[1,3]);
 
-rates=[5,5]*12.98;
+rates=[20,20,20]*12.98;
 
 % rates=[10,10]*12.98;
 % rates=[30,30]*12.98;
@@ -42,7 +42,7 @@ rates=[5,5]*12.98;
 % step_time=10;
 % delay_time=10;
 
-step_time=600;
+step_time=60;
 delay_time=0;
 
 delays=repmat(delay_time,[1,length(rates)]);
@@ -69,7 +69,7 @@ pump.set_delay(delays)
 
 
 % pump.stop()
-% pump.start()
+pump.start()
 % pump.close()
 % pump.help()
 
